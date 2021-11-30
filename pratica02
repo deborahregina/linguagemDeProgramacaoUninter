@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main() {
+
+	char frase[60];
+	int i = 0;
+	int j = 0;
+	printf("Digite a frase para conversao: \n");
+	gets_s(frase);
+
+	do {
+		switch (*(frase + i))
+		{
+		case 'A':
+			*(frase + i) = '2';
+			i++;
+			break;
+		case 'E':
+			*(frase + i) = '3';
+			i++;
+			break;
+		case 'I':
+			*(frase + i) = '4';
+			i++;
+			break;
+		case 'O':
+			*(frase + i) = '5';
+			i++;
+			break;
+		case 'U':
+			*(frase + i) = '6';
+			i++;
+			break;
+		default:
+			i++;
+			break;
+		}
+	} while (i < 60);
+
+	printf("Frase convertida: %s \n", frase);
+
+	system("pause");
+	return 0;
+}
