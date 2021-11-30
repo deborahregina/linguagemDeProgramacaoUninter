@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+	
+	int tempoLigacao;
+
+	double valorTotal = 0.0;
+
+	printf("Digite o tempo de ligacao: \n");
+	scanf_s("%d", &tempoLigacao);
+
+	if (tempoLigacao <= 3) {
+		valorTotal = 3; // taxa de ligação (2) + 1 real (para os três primeiros minutos)
+		printf("O valor total a ser pago e R$ %f \n", valorTotal);
+		system("pause");
+		return 0;
+	}
+
+	tempoLigacao = tempoLigacao - 3; // exclui-se os minutos iniciais
+
+	valorTotal = 3 + (tempoLigacao/5)*1.5 + (tempoLigacao % 5)*0.25; // taxa de ligacao (2) + 1.5 para cada 5 min + resto da divisão * 0.25
+	printf("O valor total a ser pago e R$ %f \n", valorTotal);
+
+
+	system("pause");
+
+	return 0;
+
+}
