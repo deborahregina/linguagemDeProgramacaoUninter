@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef unsigned char BYTE;
+
+
+unsigned int calculaParidade(unsigned char b) {
+
+	BYTE asc = (BYTE) b;
+	int result = 0, i = 1, remainder;
+	int reminder;
+	int paridade = 0;
+	int sum = 0;
+
+	while (asc > 0) {
+		remainder = asc % 2;
+		result = result + (i * remainder);
+		asc = asc / 2;
+		i = i * 10;
+	} // esse laço foi feito para calcular o result, que é o valor em binário do caractere desejado.
+
+	while (result > 0)
+	{
+		reminder = result % 10;
+		sum = sum + reminder;
+		result = result / 10;
+	} // esse laço foi feito para somar os dígitos de result, a fim de obter o número de bits '1' do número binário.
+
+	if (sum % 2 == 0) {
+		return 0; //paridade 0, pois a soma dos bits é par.
+	}
+	return 1; //else paridade 1, pois a soma dos bits é ímpar.
+	
+}
+
+
+int main() {
+	char a = 'R';
+	char nome[7] = { 'D','E','B','O','R','A','H' }; //vetor com a primeira letra do meu nome
+	int i;
+	printf("DEBORAH \n");
+	for (i = 0; i < 7; i++) {
+		printf("LETRA: %c \t Paridade: %d \n", nome[i], calculaParidade(nome[i]));
+	}
+	
+}
