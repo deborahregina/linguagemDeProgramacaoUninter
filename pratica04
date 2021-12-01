@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int somaRecursiva(int num) {
+	int a, b;
+	if (num < 10) {
+		return num;
+	}
+
+	a = num % 10;
+	b = num / 10;
+	return (a + somaRecursiva(b));
+
+}
+
+
+int main() {
+
+	int a;
+	a = 3776488;
+
+	printf("SOMA dos dígitos %d ", somaRecursiva(a));
+
+}
