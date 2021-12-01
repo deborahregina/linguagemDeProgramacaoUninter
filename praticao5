@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+#include <stdlib.h>
+
+void criaArquivo(char *filename) { //recebe o nome do arquivo
+	FILE *fp;
+	int jogosDefinitivos[20][6]; // jogos ficam nas linhas, as 6 apostas nas colunas
+	int i, numeroJogos, j;
+	int compara;
+	int jogo[6];
+	int posicaoNumero;
+
+	filename = strcat(filename, ".csv"); //concatena o nome com .csv
+
+	fp = fopen(filename, "w+"); // abre o arquivo
+
+	printf("Quantos jogos deseja fazer?");
+	scanf("%d", &numeroJogos);
+	
+	for (i = 0; i < numeroJogos; i++) {
+		jogosDefinitivos[i][0] = (rand() % 50);
+		for (j = 1; j < 6; j++) {
+			compara = (rand() % 50);
+			if (compara != jogosDefinitivos[i][j - 1]) { // se o número aleatório criado é diferente, armazena ele para escrita.
+				jogosDefinitivos[i][j] = compara;
+				compara = (rand() % 50);
+			}
+			else {
+				j--; // se o número criado é igual ao anterior, volta um passo para tentar gerar um número diferente
+			}
+		}
+	}
+
+	for (i = 0; i < numeroJogos; i++) { //laço para escrever os valores no arquivo
+		posicaoNumero = i + 1;
+		fprintf(fp, "\nJogo %d: %d,%d,%d,%d,%d,%d", posicaoNumero, jogosDefinitivos[i][0], jogosDefinitivos[i][1], jogosDefinitivos[i][2], jogosDefinitivos[i][3], jogosDefinitivos[i][4], jogosDefinitivos[i][5]);
+		
+	}
+
+	fclose(fp);
+
+}
+
+//main method
+int main() {
+	char str[100] = "3776488";
+
+	criaArquivo(str);
+
+	return 0;
+}
